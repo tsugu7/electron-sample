@@ -62,6 +62,87 @@ npm start
 - **STOP**: タイマーを一時停止します
 - **RESET**: タイマーを00:00にリセットします
 
+## ビルド方法
+
+### 必要条件
+
+- [Node.js](https://nodejs.org/) (v14.0.0以上推奨)
+- npm (通常Node.jsと一緒にインストールされます)
+- electron-builder (ビルド用)
+
+### electron-builderのインストール
+
+```
+npm install --save-dev electron-builder
+```
+
+### ビルド手順
+
+#### Windows向けビルド
+
+Windowsプラットフォーム上で実行する場合:
+
+```
+npm run build:win
+```
+
+WSL/Linux環境からWindowsバイナリをビルドする場合は、wineが必要です:
+
+```
+# wineのインストール (Ubuntu/Debian)
+sudo apt-get install -y wine
+
+# ビルド実行
+npm run build:win
+```
+
+#### macOS向けビルド
+
+macOSプラットフォーム上で実行する場合:
+
+```
+npm run build:mac
+```
+
+#### Linux向けビルド
+
+Linuxプラットフォーム上で実行する場合:
+
+```
+npm run build:linux
+```
+
+### ビルド成果物
+
+ビルドが成功すると、`dist`ディレクトリに以下のファイルが生成されます:
+
+- **Windows**: 
+  - `dist/win-unpacked/Timer App.exe` - 実行可能ファイル
+  - `dist/Timer App Setup 1.0.0.exe` - インストーラー (Windowsでビルドした場合)
+
+- **macOS**: 
+  - `dist/mac/Timer App.app` - macOSアプリケーション
+  - `dist/Timer App-1.0.0.dmg` - ディスクイメージ
+
+- **Linux**: 
+  - `dist/linux-unpacked/electron-sample` - 実行可能ファイル
+  - `dist/Timer App-1.0.0.AppImage` - AppImageファイル
+
+### ビルドされたアプリケーションの実行方法
+
+#### Windows
+`Timer App.exe`をダブルクリックして実行します。
+
+#### macOS
+`Timer App.app`をダブルクリックして実行します。
+
+#### Linux
+AppImageファイルに実行権限を付与して実行します:
+```
+chmod +x "dist/Timer App-1.0.0.AppImage"
+./dist/Timer\ App-1.0.0.AppImage
+```
+
 ## 開発者向け情報
 
 ### プロジェクト構造
